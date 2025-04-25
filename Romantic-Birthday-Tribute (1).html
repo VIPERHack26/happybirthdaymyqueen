@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, My Queen</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#FF69B4',secondary:'#FFD700'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Montserrat', sans-serif;
+overflow-x: hidden;
+}
+.script-font {
+font-family: 'Great Vibes', cursive;
+}
+.playfair-font {
+font-family: 'Playfair Display', serif;
+}
+.slideshow-container {
+position: relative;
+height: 100vh;
+overflow: hidden;
+}
+.slide {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+opacity: 0;
+transition: opacity 2s ease-in-out;
+background-size: cover;
+background-position: center;
+}
+.slide.active {
+opacity: 1;
+}
+.overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.4);
+}
+.typewriter {
+overflow: hidden;
+white-space: nowrap;
+margin: 0 auto;
+animation: typing 3.5s steps(40, end);
+}
+@keyframes typing {
+from { width: 0 }
+to { width: 100% }
+}
+.floating {
+animation: floating 3s ease-in-out infinite;
+}
+@keyframes floating {
+0% { transform: translateY(0px); }
+50% { transform: translateY(-15px); }
+100% { transform: translateY(0px); }
+}
+.heart {
+position: absolute;
+width: 20px;
+height: 20px;
+background-color: #FF69B4;
+transform: rotate(45deg);
+animation: heartFloat 15s linear infinite;
+opacity: 0.7;
+}
+.heart:before, .heart:after {
+content: '';
+position: absolute;
+width: 20px;
+height: 20px;
+background-color: #FF69B4;
+border-radius: 50%;
+}
+.heart:before {
+top: -10px;
+left: 0;
+}
+.heart:after {
+top: 0;
+left: -10px;
+}
+@keyframes heartFloat {
+0% {
+transform: rotate(45deg) translateY(0) translateX(0);
+opacity: 0;
+}
+10% {
+opacity: 0.7;
+}
+100% {
+transform: rotate(45deg) translateY(-100vh) translateX(100px);
+opacity: 0;
+}
+}
+.sparkle {
+position: absolute;
+width: 6px;
+height: 6px;
+border-radius: 50%;
+background-color: #FFD700;
+animation: sparkleFloat 10s linear infinite;
+opacity: 0.7;
+}
+@keyframes sparkleFloat {
+0% {
+transform: translateY(0) translateX(0) scale(0);
+opacity: 0;
+}
+10% {
+opacity: 0.7;
+transform: scale(1);
+}
+100% {
+transform: translateY(-100vh) translateX(50px) scale(0);
+opacity: 0;
+}
+}
+.heart-frame {
+position: relative;
+width: 100%;
+padding-top: 100%;
+overflow: hidden;
+}
+.heart-frame:before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: #FF69B4;
+transform: rotate(45deg);
+transform-origin: center;
+}
+.heart-frame:after {
+content: '';
+position: absolute;
+width: 100%;
+height: 100%;
+top: 0;
+left: 0;
+background: inherit;
+border-radius: 50%;
+transform: translateX(-50%);
+}
+.heart-frame:before {
+border-radius: 50%;
+transform: translateY(-50%);
+}
+.heart-shape {
+clip-path: path('M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z');
+}
+.timeline-item {
+position: relative;
+padding-left: 30px;
+margin-bottom: 50px;
+}
+.timeline-item:before {
+content: '';
+position: absolute;
+left: 0;
+top: 0;
+height: 100%;
+width: 2px;
+background: linear-gradient(to bottom, #FF69B4, #FFD700);
+}
+.timeline-item:after {
+content: '';
+position: absolute;
+left: -9px;
+top: 0;
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background: #FFD700;
+border: 2px solid #FF69B4;
+}
+.firework {
+position: absolute;
+width: 5px;
+height: 5px;
+border-radius: 50%;
+box-shadow: 0 0 10px 2px #FFD700;
+animation: firework 2s ease-out infinite;
+opacity: 0;
+}
+@keyframes firework {
+0% {
+transform: translate(0, 0);
+width: 5px;
+height: 5px;
+opacity: 1;
+}
+100% {
+transform: translate(var(--x), var(--y));
+width: 0;
+height: 0;
+opacity: 0;
+}
+}
+.audio-controls {
+position: fixed;
+top: 20px;
+right: 20px;
+z-index: 1000;
+}
+.audio-btn {
+background: rgba(255, 255, 255, 0.2);
+backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+transition: all 0.3s ease;
+}
+.audio-btn:hover {
+background: rgba(255, 255, 255, 0.3);
+}
+.gallery-item {
+transition: all 0.3s ease;
+}
+.gallery-item:hover {
+transform: scale(1.05);
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+input[type="range"] {
+-webkit-appearance: none;
+width: 100%;
+height: 6px;
+background: rgba(255, 255, 255, 0.3);
+border-radius: 5px;
+outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 15px;
+height: 15px;
+background: #FFD700;
+border-radius: 50%;
+cursor: pointer;
+}
+.fade-in {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 1s ease, transform 1s ease;
+}
+.fade-in.visible {
+opacity: 1;
+transform: translateY(0);
+}
+</style>
+</head>
+<body class="bg-[#FFF5F7]">
+<!-- Audio Controls -->
+<div class="audio-controls flex flex-col gap-3">
+<div class="w-10 h-10 flex items-center justify-center rounded-full audio-btn cursor-pointer" id="musicToggle">
+<i class="ri-music-2-line ri-lg text-white"></i>
+</div>
+<div class="w-10 h-10 flex items-center justify-center rounded-full audio-btn cursor-pointer" id="voiceToggle">
+<i class="ri-volume-up-line ri-lg text-white"></i>
+</div>
+</div>
+<!-- Audio Elements -->
+<audio id="backgroundMusic" loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+<audio id="voiceAudio">
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+</audio>
+<!-- Hero Section with Photo Collection -->
+<section class="slideshow-container relative">
+<div class="grid grid-cols-3 gap-3 h-screen p-4">
+<div class="col-span-2 row-span-2 relative overflow-hidden rounded-lg transform hover:scale-[1.02] transition-transform duration-500">
+<img src="https://readdy.ai/api/search-image?query=stunning%2520young%2520woman%2520in%2520elegant%2520flowing%2520dress%2C%2520ethereal%2520lighting%2C%2520dreamy%2520atmosphere%2C%2520soft%2520bokeh%2520background%2C%2520professional%2520fashion%2520photography%2C%2520cinematic%2520color%2520grading%2C%2520emotional%2520depth%2C%2520high-end%2520magazine%2520style%2C%2520magical%2520moment&width=800&height=800&seq=15&orientation=squarish"
+class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000 opacity-100 transition-opacity duration-500" id="mainImage">
+<div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-60"></div>
+</div>
+<div class="relative overflow-hidden rounded-lg transform hover:scale-[1.02] transition-transform duration-500">
+<img src="https://readdy.ai/api/search-image?query=joyful%2520young%2520woman%2520genuine%2520laughter%2C%2520golden%2520hour%2520sunlight%2C%2520wind-blown%2520hair%2C%2520natural%2520beauty%2C%2520candid%2520moment%2C%2520soft%2520dreamy%2520background%2C%2520fashion%2520editorial%2520style&width=400&height=400&seq=16&orientation=squarish"
+class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000 opacity-100 transition-opacity duration-500" id="topImage">
+<div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-60"></div>
+</div>
+<div class="relative overflow-hidden rounded-lg transform hover:scale-[1.02] transition-transform duration-500">
+<img src="https://readdy.ai/api/search-image?query=enchanting%2520young%2520woman%2520profile%2520portrait%2C%2520sunset%2520golden%2520light%2C%2520delicate%2520features%2C%2520artistic%2520composition%2C%2520ethereal%2520atmosphere%2C%2520high-fashion%2520editorial%2C%2520romantic%2520mood%2C%2520soft%2520glowing%2520skin&width=400&height=400&seq=17&orientation=squarish"
+class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000 opacity-100 transition-opacity duration-500" id="bottomImage">
+<div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-60"></div>
+</div>
+</div>
+<div class="overlay flex items-center justify-center">
+<div class="text-center z-10 px-4">
+<h1 class="script-font text-6xl md:text-8xl text-white mb-6 typewriter">Happy Birthday, My Queen</h1>
+<p class="text-white text-xl md:text-2xl max-w-2xl mx-auto opacity-90 playfair-font italic">Today is all about you, my love.</p>
+</div>
+</div>
+<div id="hearts-container"></div>
+<div id="sparkles-container"></div>
+</section>
+<!-- Personal Message Section -->
+<section class="py-20 px-4 bg-white">
+<div class="max-w-4xl mx-auto text-center fade-in">
+<div class="relative p-10 rounded-lg bg-white shadow-lg border border-[#FFE4E1]">
+<div class="absolute -top-5 left-1/2 transform -translate-x-1/2 w-10 h-10 flex items-center justify-center bg-primary rounded-full">
+<i class="ri-heart-fill ri-lg text-white"></i>
+</div>
+<h2 class="playfair-font text-3xl md:text-4xl text-primary mb-8">A Message From My Heart</h2>
+<p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
+I love you more than words can say. Today is your special day, and I just want to remind you how much you mean to me. Happy birthday, my love.
+</p>
+<p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
+Every moment with you is a treasure, every smile a gift. You've brought so much joy and light into my life, and I'm grateful for every day we share together.
+</p>
+<p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+May this birthday be as beautiful and special as you are.
+</p>
+<div class="mt-8 flex justify-center">
+<span class="script-font text-2xl text-primary">Forever Yours</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Final Scene -->
+<section class="py-20 px-4 bg-gray-900 relative overflow-hidden" id="fireworks-container">
+<div class="max-w-4xl mx-auto text-center relative z-10">
+<h2 class="script-font text-6xl md:text-7xl text-white mb-8 fade-in">Forever Yours</h2>
+<p class="text-white text-xl md:text-2xl max-w-2xl mx-auto opacity-90 mb-10 playfair-font italic fade-in">
+Here's to many more birthdays, adventures, and moments of love together.
+</p>
+<div class="mt-10 fade-in">
+<button class="bg-primary hover:bg-opacity-90 text-white py-3 px-8 rounded-button text-lg font-medium transition duration-300 ease-in-out transform hover:scale-105 flex items-center mx-auto whitespace-nowrap">
+<i class="ri-heart-fill mr-2"></i>
+I Love You
+</button>
+</div>
+</div>
+</section>
+<!-- Back to Top Button -->
+<div class="fixed bottom-6 right-6 z-50 opacity-0 transition-opacity duration-300" id="backToTop">
+<button class="w-12 h-12 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-opacity-90 transition duration-300 whitespace-nowrap !rounded-button">
+<i class="ri-arrow-up-line ri-lg"></i>
+</button>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Create floating hearts
+const heartsContainer = document.getElementById('hearts-container');
+for (let i = 0; i < 15; i++) {
+const heart = document.createElement('div');
+heart.classList.add('heart');
+heart.style.left = `${Math.random() * 100}%`;
+heart.style.animationDelay = `${Math.random() * 15}s`;
+heart.style.animationDuration = `${15 + Math.random() * 10}s`;
+heartsContainer.appendChild(heart);
+}
+// Create sparkles
+const sparklesContainer = document.getElementById('sparkles-container');
+for (let i = 0; i < 30; i++) {
+const sparkle = document.createElement('div');
+sparkle.classList.add('sparkle');
+sparkle.style.left = `${Math.random() * 100}%`;
+sparkle.style.animationDelay = `${Math.random() * 10}s`;
+sparkle.style.animationDuration = `${10 + Math.random() * 5}s`;
+sparklesContainer.appendChild(sparkle);
+}
+// Audio controls
+const backgroundMusic = document.getElementById('backgroundMusic');
+const voiceAudio = document.getElementById('voiceAudio');
+const musicToggle = document.getElementById('musicToggle');
+const voiceToggle = document.getElementById('voiceToggle');
+let musicPlaying = false;
+let voicePlayed = false;
+musicToggle.addEventListener('click', function() {
+if (musicPlaying) {
+backgroundMusic.pause();
+musicToggle.innerHTML = '<i class="ri-music-2-line ri-lg text-white"></i>';
+} else {
+backgroundMusic.play();
+musicToggle.innerHTML = '<i class="ri-music-2-fill ri-lg text-white"></i>';
+}
+musicPlaying = !musicPlaying;
+});
+voiceToggle.addEventListener('click', function() {
+voiceAudio.currentTime = 0;
+voiceAudio.play();
+voiceToggle.innerHTML = '<i class="ri-volume-up-fill ri-lg text-white"></i>';
+setTimeout(() => {
+voiceToggle.innerHTML = '<i class="ri-volume-up-line ri-lg text-white"></i>';
+}, 2000);
+});
+// Play voice audio on page load (after a slight delay)
+setTimeout(() => {
+if (!voicePlayed) {
+voiceAudio.play();
+voicePlayed = true;
+voiceToggle.innerHTML = '<i class="ri-volume-up-fill ri-lg text-white"></i>';
+setTimeout(() => {
+voiceToggle.innerHTML = '<i class="ri-volume-up-line ri-lg text-white"></i>';
+}, 2000);
+}
+}, 2000);
+// Fade-in animation on scroll
+const fadeElements = document.querySelectorAll('.fade-in');
+function checkFade() {
+fadeElements.forEach(element => {
+const elementTop = element.getBoundingClientRect().top;
+const elementBottom = element.getBoundingClientRect().bottom;
+if (elementTop < window.innerHeight - 100 && elementBottom > 0) {
+element.classList.add('visible');
+}
+});
+}
+window.addEventListener('scroll', checkFade);
+checkFade(); // Check on initial load
+// Fireworks animation
+const fireworksContainer = document.getElementById('fireworks-container');
+function createFirework() {
+const firework = document.createElement('div');
+firework.classList.add('firework');
+// Random position
+const left = Math.random() * 100;
+const top = 50 + Math.random() * 50;
+firework.style.left = `${left}%`;
+firework.style.top = `${top}%`;
+// Random color
+const colors = ['#FFD700', '#FF69B4', '#FFF', '#FF1493', '#FFACFC'];
+firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+// Random direction
+const angle = Math.random() * Math.PI * 2;
+const distance = 50 + Math.random() * 100;
+const x = Math.cos(angle) * distance;
+const y = Math.sin(angle) * distance;
+firework.style.setProperty('--x', `${x}px`);
+firework.style.setProperty('--y', `${y}px`);
+fireworksContainer.appendChild(firework);
+// Remove after animation
+setTimeout(() => {
+firework.remove();
+}, 2000);
+}
+// Create fireworks at intervals
+setInterval(createFirework, 300);
+// Back to top button
+const backToTopButton = document.getElementById('backToTop');
+window.addEventListener('scroll', function() {
+if (window.scrollY > 500) {
+backToTopButton.style.opacity = '1';
+} else {
+backToTopButton.style.opacity = '0';
+}
+});
+backToTopButton.addEventListener('click', function() {
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+});
+// Image rotation
+const imageQueries = [
+  {
+    main: "stunning young woman in elegant flowing dress, ethereal lighting, dreamy atmosphere, soft bokeh background, professional fashion photography, cinematic color grading, emotional depth, high-end magazine style, magical moment",
+    top: "joyful young woman genuine laughter, golden hour sunlight, wind-blown hair, natural beauty, candid moment, soft dreamy background, fashion editorial style",
+    bottom: "enchanting young woman profile portrait, sunset golden light, delicate features, artistic composition, ethereal atmosphere, high-fashion editorial, romantic mood, soft glowing skin"
+  },
+  {
+    main: "elegant woman in haute couture gown, dramatic lighting, luxury fashion photography, artistic composition, professional studio setup, editorial style, glamorous atmosphere, high fashion",
+    top: "beautiful woman candid smile, natural daylight, authentic emotion, lifestyle photography, modern fashion, urban setting, genuine happiness",
+    bottom: "sophisticated woman portrait, golden sunset, fashion editorial, artistic lighting, premium photography, emotional connection, soft focus background"
+  },
+  {
+    main: "graceful woman in designer dress, contemporary fashion, premium photography, artistic lighting, editorial style, luxury atmosphere, professional studio shot",
+    top: "radiant woman natural beauty, morning light, authentic moment, lifestyle portrait, modern elegance, urban fashion, genuine expression",
+    bottom: "charming woman portrait, dusk lighting, fashion magazine style, creative composition, premium quality, emotional depth, artistic blur"
+  }
+];
+let currentImageSet = 0;
+function updateImages() {
+  const mainImage = document.getElementById('mainImage');
+  const topImage = document.getElementById('topImage');
+  const bottomImage = document.getElementById('bottomImage');
+  
+  mainImage.style.opacity = '0';
+  topImage.style.opacity = '0';
+  bottomImage.style.opacity = '0';
+  
+  setTimeout(() => {
+    mainImage.src = `https://readdy.ai/api/search-image?query=$%7BencodeURIComponent%28imageQueries%5BcurrentImageSet%5D.main%29%7D&width=800&height=800&seq=${15 + currentImageSet * 3}&orientation=squarish`;
+    topImage.src = `https://readdy.ai/api/search-image?query=$%7BencodeURIComponent%28imageQueries%5BcurrentImageSet%5D.top%29%7D&width=400&height=400&seq=${16 + currentImageSet * 3}&orientation=squarish`;
+    bottomImage.src = `https://readdy.ai/api/search-image?query=$%7BencodeURIComponent%28imageQueries%5BcurrentImageSet%5D.bottom%29%7D&width=400&height=400&seq=${17 + currentImageSet * 3}&orientation=squarish`;
+    
+    mainImage.style.opacity = '1';
+    topImage.style.opacity = '1';
+    bottomImage.style.opacity = '1';
+    
+    currentImageSet = (currentImageSet + 1) % imageQueries.length;
+  }, 500);
+}
+setInterval(updateImages, 10000);
+});
+</script>
+</body>
+</html>
